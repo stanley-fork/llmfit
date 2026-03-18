@@ -677,7 +677,6 @@ fn ensure_dashboard_available(
     let url = format!("http://{}:{}/", host, port);
 
     if dashboard_reachable(&host, port) {
-        eprintln!("Dashboard: {}", url);
         return None;
     }
 
@@ -720,7 +719,6 @@ fn ensure_dashboard_available(
 
     for _ in 0..20 {
         if dashboard_reachable(&host, port) {
-            eprintln!("Dashboard: {}", url);
             return Some(DashboardGuard { child });
         }
 
@@ -742,7 +740,6 @@ fn ensure_dashboard_available(
         thread::sleep(Duration::from_millis(100));
     }
 
-    eprintln!("Dashboard starting: {}", url);
     Some(DashboardGuard { child })
 }
 
